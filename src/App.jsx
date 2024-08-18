@@ -4,15 +4,20 @@ import Layout from './Pages/layout'
 import Home from './Pages/home'
 import Login from './Pages/Auth/Login';
 import Register from './Pages/Auth/Register';
+import { useContext } from 'react';
+import { AppContext } from './Pages/Context/AppContext';
 
 export default function App() {
+
+  const {user} = useContext(AppContext);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={user ? <Home /> : <Login />} />
+          <Route path="/register" element={user ? <Home /> : <Register />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -6,6 +6,7 @@ import Login from './Pages/Auth/Login';
 import Register from './Pages/Auth/Register';
 import { useContext } from 'react';
 import { AppContext } from './Pages/Context/AppContext';
+import CreatePost from './Pages/Posts/CreatePost';
 
 export default function App() {
 
@@ -18,6 +19,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/register" element={user ? <Home /> : <Register />} />
+          <Route path="/createPost" element={user ? <CreatePost /> : <Login />} />
         </Route>
       </Routes>
     </BrowserRouter>

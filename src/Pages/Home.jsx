@@ -46,10 +46,11 @@ export default function Home() {
                 {post.title}
             </h3>
             <small>
-                Created by {post.user.name} on {""}
+                Created by {post?.user?.user?.name} on {""}
                 {new Date(post.created_at).toLocaleDateString()}
             </small>
-        </div>
+        </div>            
+        <p>{post.body}</p>
     </div>
     
     

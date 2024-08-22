@@ -1,10 +1,12 @@
 // import { useContext } from "react"
 // import { AppContext } from "./Context/AppContext"
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./Context/AppContext";
 
 export default function Home() {
+
+    const [posts, setPosts] = useState([]);
 
     const { token } = useContext(AppContext);
 
@@ -19,7 +21,11 @@ export default function Home() {
 
         const data = await res.json();
 
-        console.log(data);
+        if(res.ok) {
+            setPosts(data?.data);
+            console.log(data);
+        }
+
     }
 
     useEffect(() => {
@@ -31,6 +37,24 @@ export default function Home() {
     return (
         <>
             <h1 className="title">Home</h1>
+
+    {posts.length > 0 ? posts.map(post => (<div key={post.id}>
+    
+    <div>
+        <div>
+            <h3>
+                {post.title}
+            </h3>
+            <small>
+                Created by {post.user.name} on {""}
+                {new Date(post.created_at).toLocaleDateString()}
+            </small>
+        </div>
+    </div>
+    
+    
+    </div>))
+    : <p>No posts</p>}
 
         </>
     )

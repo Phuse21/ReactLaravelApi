@@ -38,7 +38,7 @@ export default function Login() {
                     localStorage.setItem("token", token);
                     console.log("Token set in localStorage:", localStorage.getItem("token")); // Log after setting token
                     setToken(token);
-                 navigate("/");
+                 navigate("/register");
                 } else {
                     console.error("Received undefined or null token");
                 }
